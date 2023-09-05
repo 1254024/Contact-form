@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <style>
+    *{
+    background-color: black;
+} 
+table{
+
+    position: absolute;
+    left: 100px;
+    top: 250px;
+    background-color: rgb(0, 0, 0);
+    color: yellow;
+    border-color: rgb(253, 248, 248);
+    font-size: large;
+    font-style: italic;
+    font-language-override: initial;
+}
+.input-details{
+    width: 700px;
+    height: 200px;
+    background-color: black;
+    color: yellow;
+    font-size: x-large;
+}
+.movielbl{
+    position: absolute;
+    left: 20px;
+  
+}
+#name{
+    position: relative;
+    left: 200px;
+    border-radius: 10px;
+    border-color: yellow;
+    background-color: white;
+
+}
+.yearlbl{
+    position: absolute;
+    left: 20px;
+    
+top: 60px;    
+}
+#year{
+    position: absolute;
+    left: 200px;
+    border-radius: 10px;
+    top: 60px;
+    border-color: yellow;
+    background-color: white;
+}
+.boxlbl{
+    position: absolute;
+    left: 20px;
+    top: 105px;
+}
+#box{
+    width: 200px;
+    position: absolute;
+    left: 340px;
+    top: 105px;
+    border-radius: 7px;
+    border-color: yellow;
+    background-color: white;
+}
+.btn{
+    position: relative;
+    left: 200px;
+    width: 150px;
+    top: 130px;
+    border-radius: 20px;
+    border-color: whitesmoke;
+    color: yellow;
+    cursor: pointer;
+}
+.bubtn{
+    font-size: large;
+    color: yellow;
+    border-radius: 5px;
+    background-color: black;
+    cursor: pointer;
+}
+ </style>
+    <title>Document</title>
+</head>
+<body>
+    <div class=" input-details">
+        <div class="movie">
+    <label class="movielbl">MOVIE NAME:</label>
+    <input type="text" id="name" placeholder="MOVIE_NAME">
+        </div>
+        <div class="year">
+    <label class="yearlbl">YEAR :</label>
+    <input type="text" id="year" placeholder="RELEASE_YEAR">
+        </div>
+        <div class="box">
+    <label class="boxlbl">BOX OFFICE COLLECTION :</label>
+    <input type="text" id="box" placeholder="BOX OFFICE COLLECTION">
+        </div>
+        <div class="box">
+    <button  class="btn"
+    onclick="addrecord()"> Add Record </button>
+    </div>
+    <br>
+    <table border="1" cellpadding="20">
+        <thead>
+            <tr>
+                <td>MOVIE NAME</td>
+                <td>YEAR</td>
+                <td>BOX OFFICES</td>
+                <td> DELETE</td>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+            
+        </tbody>
+    </table>
+    <script >
+        tbody_obj=document.getElementById('tbody');
+IMBD=[];
+render();
+function render(){
+    total_html =" ";
+    for(i=0;i<IMBD.length;i++){
+    html=`<tr>
+            <td>${IMBD[i].name}</td>
+            <td>${IMBD[i].year}</td>
+            <td>${IMBD[i].box}</td>
+        <td> <button class="bubtn", onclick="delectrow()"> Delete </button> </td>
+        </tr>`
+        total_html=total_html+html;
+    }
+   tbody_obj.innerHTML= total_html;
+}
+function addrecord(){
+  nameobj=document.getElementById('name');
+  yearobj=document.getElementById('year');
+  boxobj=document.getElementById('box');
+  name_ip =nameobj.value;
+  year_ip = yearobj.value;
+  box_ip = boxobj.value;
+  obj={name:name_ip, year:year_ip,box:box_ip};
+  IMBD.push(obj);
+  render();
+  console.log('IMBD=',IMBD);
+}
+function delectrow(){
+    IMBD.pop();
+    render();
+    console.log('IMBD=',IMBD);
+}
+    </script>
+</body>
+</html>
